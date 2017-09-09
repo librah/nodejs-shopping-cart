@@ -1,4 +1,4 @@
-const dbURI = process.env.MONGO_DB_URI;
+const dbURI = process.env.MONGODB_URI;
 const should = require('chai').should();
 const mongoose = require('mongoose');
 

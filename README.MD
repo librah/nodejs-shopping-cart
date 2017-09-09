@@ -16,7 +16,7 @@ Clone this repository
 ```
 Setup the environment variables replacing <MONGODB-PORT> with your mongodb port, usually is 27017.
 ``` shell
-    export MONGO_DB_URI=mongodb://localhost:<MONGODB-PORT>/shopping
+    export MONGODB_URI=mongodb://localhost:<MONGODB-PORT>/shopping
 ```
 Install dependencies
 ``` shell
