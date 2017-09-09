@@ -3,7 +3,7 @@
 
 
         <h1>Checkout</h1>
-        <h4>Total: R${{total}}</h4>
+        <h4>Total: ${{total}}</h4>
         <div id="charge-error" class="alert alert-danger {{#if noError}}hidden{{/if}}">
             {{errMsg}}
         </div>
@@ -14,26 +14,26 @@
             <div class="row">
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="name">Nome</label>
+                        <label for="name">Name</label>
                         <input type="text" id="name" class="form-control" required name="name">
                     </div>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="address">Endereço</label>
+                        <label for="address">Address</label>
                         <input type="text" id="address" class="form-control" required name="address">
                     </div>
                 </div>
                 <hr>
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="card-name">Bandeira do Cartão</label>
+                        <label for="card-name">Card name</label>
                         <input type="text" id="card-name" class="form-control" required>
                     </div>
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="card-number">Número do Cartão de Crédito</label>
+                        <label for="card-number">Car number</label>
                         <input type="text" id="card-number" class="form-control" required>
                     </div>
                 </div>
@@ -41,13 +41,13 @@
                     <div class="row">
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <label for="card-expiry-month">Mês do Vencimento</label>
+                                <label for="card-expiry-month">Card Expiry Month</label>
                                 <input type="text" id="card-expiry-month" class="form-control" required>
                             </div>
                         </div>
                         <div class="col-xs-6">
                             <div class="form-group">
-                                <label for="card-expiry-year">Ano do Vencimento</label>
+                                <label for="card-expiry-year">Card Expiry Year</label>
                                 <input type="text" id="card-expiry-year" class="form-control" required>
                             </div>
                         </div>
@@ -55,13 +55,13 @@
                 </div>
                 <div class="col-xs-12">
                     <div class="form-group">
-                        <label for="card-cvc">Código de Segurança</label>
+                        <label for="card-cvc">Card CVC</label>
                         <input type="text" id="card-cvc" class="form-control" required>
                     </div>
                 </div>
             </div>
 
-            <button type="submit" class="btn btn-success">Comprar!</button>
+            <button type="submit" class="btn btn-success">Purchase!</button>
         </form>
 
     </div>
