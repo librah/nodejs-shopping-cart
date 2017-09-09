@@ -4,7 +4,7 @@ This shopping cart demo is built based on the work from
 [NerdStore - Carrinho de Compras - NodeJS/Express](https://github.com/brenohq/nodejs-shopping-cart)
 
 # Live Demo on Heroku:
-[young-waters-76843.herokuapp.com](https://young-waters-76843.herokuapp.com/)
+[maruji-store.herokuapp.com](https://maruji-store.herokuapp.com/)
 
 
 ### Run Locally on Your Machine
