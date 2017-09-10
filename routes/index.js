@@ -88,7 +88,9 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
   }
   var cart = new Cart(req.session.cart);
 
-  var stripe = require("stripe")("sk_test_bgBdBuFAydIEVdepmjpaJKUy");
+  var stripe = require("stripe")("sk_test_BQokikJOvBiI2HlWgH4olfQ2");
+
+  console.info("receive POST /checkout, token: %s", req.body.stripeToken);
 
   stripe.charges.create({
     amount: cart.totalPrice * 100,
@@ -97,14 +99,16 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
     description: "Test Charge"
   }, function(err, charge) {
     if (err) {
+      console.info('got error: %s', err)
       req.flash('error', 'We could not finalize your purchase!');
       return res.redirect('/checkout');
     }
+    console.info("save order")
     var order = new Order({
       user: req.user,
       cart: cart,
-      address: req.body.address,
-      name: req.body.name,
+      // address: req.body.address,
+      // name: req.body.name,
       paymentId: charge.id
     });
     order.save(function(err, result) {
