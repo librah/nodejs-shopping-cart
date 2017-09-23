@@ -112,9 +112,10 @@ router.post('/checkout', isLoggedIn, function(req, res, next) {
       paymentId: charge.id
     });
     order.save(function(err, result) {
-      req.flash('success', 'Purchase made successfully!');
-      req.session.cart = null;
-      res.redirect('/');
+        console.info("order saved, flash and redirect")
+        req.flash('success', 'Purchase made successfully!');
+        req.session.cart = null;
+        res.redirect('/');
     });
   });
 });

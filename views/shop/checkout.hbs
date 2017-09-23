@@ -1,28 +1,45 @@
 <script type="text/javascript" src="https://js.stripe.com/v3/"></script>
 
-<div class="row">
-    <div class="col-sm-6 col-md-4 col-md-offset-4 col-sm-offset-3">
 
+<div class="demo-wrapper">
+    <div class="demo-container">
         <h1>Checkout</h1>
         <h4>Total: ${{total}}</h4>
 
-        <form action="/checkout" method="post" id="payment-form">
-            <div class="form-row">
-                <label for="card-element">
-                    Credit or debit card
-                </label>
-                <div id="card-element">
-                    <!-- a Stripe Element will be inserted here. -->
+        <div class="card-wrapper"></div>
+
+        <div class="form-container active">
+            <form action="/checkout" method="post" id="payment-form">
+                <div class="row">
+                    <div class="small-6 columns">
+                        <input placeholder="Card number" id="number" name="number" class="jp-card-invalid visa identified" type="text">
+                    </div>
+                    <div class="small-6 columns">
+                        <input placeholder="Full name" id="name" name="name" type="text">
+                    </div>
                 </div>
+                <div class="row">
+                    <div class="small-3 columns">
+                        <input placeholder="MM/YY" id="expiry" name="expiry" type="text">
+                    </div>
 
-                <!-- Used to display form errors -->
-                <div id="card-errors" role="alert"></div>
-            </div>
+                    <div class="small-3 columns">
+                        <input placeholder="CVC" id="cvc" name="cvc" type="text">
+                    </div>
 
-            <button>Submit Payment</button>
-        </form>
-
+                    <div class="small-6 columns">
+                        <input value="Submit" class="button postfix" type="submit">
+                    </div>
+                </div>
+            </form>
+        </div>
     </div>
 </div>
 
+<script src="javascripts/card.js"></script>
+<script type="text/javascript" src="https://js.stripe.com/v2/"></script>
 <script type="text/javascript" src="javascripts/checkout.js"></script>
+<script>
+    $('code').each(function(i, e) {hljs.highlightBlock(e)});
+    var card = new Card({ form: '.active form', container: '.card-wrapper' })
+</script>
