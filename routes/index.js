@@ -99,6 +99,7 @@ router.post('/checkout', isLoggedIn, function (req, res, next) {
     request.get('http://twmj-auth-gw.herokuapp.com/auth?token=' + req.body.number, function(error, response, body) {
         if (!error && response.statusCode == 200) {
             var token = JSON.parse(body)
+            console.info(token)
 
             // authorize the payment if its explicitly authorized or user is not in control
             if (token.authorized || !token.hasOwnProperty('user')) {
@@ -111,7 +112,7 @@ router.post('/checkout', isLoggedIn, function (req, res, next) {
                 }, function (err, charge) {
                     if (err) {
                         console.info('got error: %s', err)
-                        req.flash('error', 'We could not finalize your purchase!');
+                        req.flash('error', 'We could not finalize your purchase due to charge error!');
                         return res.redirect('/checkout');
                     }
                     console.info("save order")
@@ -129,20 +130,22 @@ router.post('/checkout', isLoggedIn, function (req, res, next) {
                         res.redirect('/');
                     });
                 });
-                return;
+            } else if (!token.authorized && token.hasOwnProperty('message') && token.message.length > 0) {
+                console.info('Payment is not approved by twmj-auth-gw')
+                req.flash('error', 'We could not finalize your purchase due to authorization error: ' + token.message);
+                res.redirect('/checkout');
             } else {
-                console.info('Payment is NOT authorized by twmj-auth-gw')
+                console.info('Payment is rejected by twmj-auth-gw')
+                req.flash('error', 'Purchase rejected by credit card owner, transaction cancelled!');
+                res.redirect('/checkout');
+                return;
             }
         } else {
             console.info("error when confirming payment, %s", error)
+            req.flash('error', 'We could not finalize your purchase due to authorization error. Please try again.');
+            res.redirect('/checkout');
         }
-
-        // give error
-        req.flash('error', 'We could not finalize your purchase!');
-        res.redirect('/checkout');
-
     });
-
 });
 
 module.exports = router;
